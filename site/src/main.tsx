@@ -2,12 +2,12 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
-import { BreakPointProvider } from 'breakpointer'
+import { BreakpointerProvider} from 'breakpointer'
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
-        <BreakPointProvider>
+        <BreakpointerProvider>
             <App />
-        </BreakPointProvider>
+        </BreakpointerProvider>
     </StrictMode>,
 )

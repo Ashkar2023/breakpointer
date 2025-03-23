@@ -8,9 +8,9 @@ interface IBreakPointState {
 interface IBreakPointContext extends IBreakPointState {
 }
 
-const BreakPointerContext = createContext<IBreakPointContext>({
+const BreakpointerContext = createContext<IBreakPointContext>({
     currentWidth: window.innerWidth,
     currentScreen: ""
 })
 
-export default BreakPointerContext
+export default BreakpointerContext

@@ -1,3 +1,2 @@
-export { useBreakPointContext } from "./hooks/useBreakPointer"
-export { default as BreakPointProvider } from "./components/breakPoint.provider"
-export { default as BreakPointIndicator } from "./components/breakPoint.indicator"
+export * from "./components/index"
+export { useBreakpointerContext } from "./hooks/useBreakpointerContext"

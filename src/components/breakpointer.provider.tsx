@@ -1,21 +1,22 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { debounce } from "../util/debounce";
-import BreakPointerContext from "../contexts/breakPoint.context";
+import { debounce } from "../core/util/debounce";
+import BreakpointerContext from "../contexts/breakPoint.context";
+import { breakpoints as breakpointsConstants } from "../core/constants/breakpoints";
 
-type BreakPointProviderProps = {
+type BreakpointProviderProps = {
     children: React.ReactNode,
-    breakpoints?: Record<string, number>
+    breakpointsObj?: Record<string, number>
 };
 
-export const breakPointConstanst = {
-    sm: 640, // large phones & small tablets
-    md: 768, // Tablets
-    lg: 1024, // Laptops & large tablets
-    xl: 1280, // Desktop & large laptops
-    "2xl": 1536 // Wide screen & large desktops
-};
 
-const BreakPointProvider = ({ children, breakpoints = { ...breakPointConstanst } }: BreakPointProviderProps) => {
+export const BreakpointerProvider = ({
+    children,
+    breakpointsObj = {}
+}: BreakpointProviderProps) => {
+    const breakpoints = {
+        ...breakpointsConstants,
+        ...breakpointsObj,
+    }
     const [innerWidth, setInnerWidth] = useState(window.innerWidth);
     const [currentScreen, setCurrentScreen] = useState<keyof typeof breakpoints | null>(null);
 
@@ -26,16 +27,16 @@ const BreakPointProvider = ({ children, breakpoints = { ...breakPointConstanst }
         []
     );
 
-    console.log(breakpoints);
     const detectScreen = useCallback((width: number) => {
         let curr = -Infinity;
         let screen: keyof typeof breakpoints | null = null;
 
         for (let key in breakpoints) {
-            console.log(breakpoints[key],width)
-            if (breakpoints[key] <= width && breakpoints[key] > curr) {
-                curr = breakpoints[key];
-                screen = key;
+            const typedKey = key as keyof typeof breakpoints;
+            
+            if (breakpoints[typedKey] <= width && breakpoints[typedKey] > curr) {
+                curr = breakpoints[typedKey];
+                screen = typedKey;
             }
         }
 
@@ -60,13 +61,11 @@ const BreakPointProvider = ({ children, breakpoints = { ...breakPointConstanst }
     }, []);
 
     return (
-        <BreakPointerContext.Provider value={{
+        <BreakpointerContext.Provider value={{
             currentWidth: innerWidth,
             currentScreen: currentScreen
         }}>
             {children}
-        </BreakPointerContext.Provider>
+        </BreakpointerContext.Provider>
     );
 };
-
-export default BreakPointProvider
