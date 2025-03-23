@@ -1,10 +1,16 @@
 {
     "name": "breakpointer",
-    "version": "0.0.1",
+    "version": "0.0.5",
     "description": "a lightweight React library for real-time breakpoint detection. supports custom and default tailwind breakpoints.",
-    "main": "dist/index.js",
+    "main": "dist/index.cjs",
+    "module": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "type": "module",
     "scripts": {
-        "test": "echo \"implement test\""
+        "test": "echo \"implement test\"",
+        "build": "tsup",
+        "dev": "tsup --watch",
+        "prepublishOnly": "npm run build"
     },
     "repository": {
         "type": "git",
@@ -19,12 +25,30 @@
         "react-util"
     ],
     "author": {
-        "name": "Muhammed Ashkar",
-        "email": "mashkar803@gmail.com"
+        "name": "Ashkar2023",
+        "email": "muhammedashkar2023@gmail.com"
     },
     "license": "MIT",
     "bugs": {
         "url": "https://github.com/Ashkar2023/breakpointer/issues"
     },
-    "homepage": "https://github.com/Ashkar2023/breakpointer#readme"
+    "homepage": "https://github.com/Ashkar2023/breakpointer#readme",
+    "devDependencies": {
+        "@types/react": "^18.3.19",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "tslib": "^2.8.1",
+        "tsup": "^8.4.0",
+        "typescript": "^5.8.2"
+    },
+    "peerDependencies": {
+        "react": ">=16",
+        "react-dom": ">=16"
+    },
+    "engines": {
+        "node": ">=17"
+    },
+    "files": [
+        "dist"
+    ]
 }
