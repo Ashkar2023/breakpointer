@@ -1,2 +1,2 @@
 export * from "./components/index"
-export { useBreakpointer } from "./hooks/useBreakpointerContext"
+export { useBreakpointer } from "./hooks/useBreakpointer"

@@ -1,5 +1,5 @@
 import { FC, HTMLAttributes, useMemo, useState } from "react";
-import { useBreakpointer } from "../hooks/useBreakpointerContext";
+import { useBreakpointer } from "../hooks/useBreakpointer";
 import { styled } from "goober";
 import { Laptop, LucideIcon, Monitor, Smartphone, Tablet, TabletSmartphone, Tv } from "lucide-react";
 import { breakpoints } from "../core/constants/breakpoints";

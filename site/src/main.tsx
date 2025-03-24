@@ -7,7 +7,6 @@ import resolveConfig from "tailwindcss/resolveConfig";
 import tailwindConfig from "../tailwind.config"
 
 const config = resolveConfig(tailwindConfig);
-console.log(config)
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
