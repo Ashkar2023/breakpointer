@@ -7,10 +7,11 @@ import resolveConfig from "tailwindcss/resolveConfig";
 import tailwindConfig from "../tailwind.config"
 
 const config = resolveConfig(tailwindConfig);
+console.log(import.meta.env.MODE);
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
-        <BreakpointerProvider breakpointsObj={config.theme.screens}>
+        <BreakpointerProvider breakpointsObj={config.theme.screens} mode={import.meta.env.MODE}>
             <App />
         </BreakpointerProvider>
     </StrictMode>,

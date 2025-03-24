@@ -39,9 +39,14 @@ import { createRoot } from 'react-dom/client';
 import App from './App';
 import { BreakpointerProvider } from 'breakpointer';
 
+/* 
+    mode !== "development", the BreakpointerIndicator will skip rendering   
+*/
+const MODE = import.meta.env.MODE; // based on your chosen build tool
+
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
-        <BreakpointerProvider>
+        <BreakpointerProvider mode={MODE}>
             <App />
         </BreakpointerProvider>
     </StrictMode>,

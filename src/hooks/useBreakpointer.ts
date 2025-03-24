@@ -4,13 +4,15 @@ import BreakpointerContext from "../contexts/breakPoint.context";
 interface IBreakpointerContext {
     screen: string;
     currentWidth: number;
+    _render: boolean
 }
 
 export const useBreakpointer = (): IBreakpointerContext => {
-    const { currentWidth, currentScreen } = useContext(BreakpointerContext);
+    const { currentWidth, currentScreen, mode } = useContext(BreakpointerContext);
 
     return {
         screen: currentScreen!,
-        currentWidth: currentWidth
+        currentWidth: currentWidth,
+        _render: mode === "development" ? true : false
     }
 }

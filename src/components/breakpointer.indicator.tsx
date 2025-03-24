@@ -51,7 +51,10 @@ const breakpointIcons: {
 interface BreakpointerIndicatorProps extends HTMLAttributes<HTMLDivElement> { };
 
 export const BreakpointerIndicator: FC<BreakpointerIndicatorProps> = ({ className, ...props }) => {
-    const { currentWidth, screen } = useBreakpointer();
+    const { currentWidth, screen, _render } = useBreakpointer();
+    
+    if(!_render) return null;
+
     const [right, setRight] = useState(false);
 
     const Icon: LucideIcon = useMemo(() => {
@@ -70,7 +73,7 @@ export const BreakpointerIndicator: FC<BreakpointerIndicatorProps> = ({ classNam
             }}
         >
             <Col1>
-                <Icon size={20}/>
+                <Icon size={20} />
             </Col1>
             <Col1>
                 <b

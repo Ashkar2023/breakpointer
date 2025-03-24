@@ -6,13 +6,15 @@ import { parseUnit } from "../core/unit.parser";
 
 type BreakpointProviderProps = {
     children: React.ReactNode,
-    breakpointsObj?: Record<string, string>
+    breakpointsObj?: Record<string, string>,
+    mode: string
 };
 
 
 export const BreakpointerProvider = ({
     children,
-    breakpointsObj = {}
+    breakpointsObj = {},
+    mode
 }: BreakpointProviderProps) => {
     const breakpoints = {
         ...breakpointsConstants,
@@ -64,7 +66,8 @@ export const BreakpointerProvider = ({
     return (
         <BreakpointerContext.Provider value={{
             currentWidth: innerWidth,
-            currentScreen: currentScreen
+            currentScreen: currentScreen,
+            mode: mode
         }}>
             {children}
         </BreakpointerContext.Provider>
