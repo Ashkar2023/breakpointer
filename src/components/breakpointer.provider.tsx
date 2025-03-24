@@ -1,11 +1,12 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { debounce } from "../core/util/debounce";
+import { debounce } from "../core/utils";
 import BreakpointerContext from "../contexts/breakPoint.context";
 import { breakpoints as breakpointsConstants } from "../core/constants/breakpoints";
+import { parseUnit } from "../core/unit.parser";
 
 type BreakpointProviderProps = {
     children: React.ReactNode,
-    breakpointsObj?: Record<string, number>
+    breakpointsObj?: Record<string, string>
 };
 
 
@@ -15,7 +16,7 @@ export const BreakpointerProvider = ({
 }: BreakpointProviderProps) => {
     const breakpoints = {
         ...breakpointsConstants,
-        ...breakpointsObj,
+        ...parseUnit(breakpointsObj),
     }
     const [innerWidth, setInnerWidth] = useState(window.innerWidth);
     const [currentScreen, setCurrentScreen] = useState<keyof typeof breakpoints | null>(null);

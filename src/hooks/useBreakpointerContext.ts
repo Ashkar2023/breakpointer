@@ -6,7 +6,7 @@ interface IBreakpointerContext {
     currentWidth: number;
 }
 
-export const useBreakpointerContext = (): IBreakpointerContext => {
+export const useBreakpointer = (): IBreakpointerContext => {
     const { currentWidth, currentScreen } = useContext(BreakpointerContext);
 
     return {
