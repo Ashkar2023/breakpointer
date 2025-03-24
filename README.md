@@ -2,6 +2,18 @@
 
 A lightweight React library for real-time breakpoint detection with support for custom and default Tailwind breakpoints.
 
+![NPM Version](https://badgen.net/npm/v/breakpointer)
+![gzip](https://badgen.net/bundlephobia/minzip/breakpointer)
+![License](https://badgen.net/npm/license/breakpointer)
+<br/>
+![Downloads](https://badgen.net/npm/dt/breakpointer)
+![Last Commit](https://badgen.net/github/last-commit/Ashkar2023/breakpointer)
+
+
+## Breakpointer in action:
+
+![Breakpointer Demo](https://raw.githubusercontent.com/Ashkar2023/breakpointer/master/assets/breakpointer-demo.gif)
+
 ## Installation
 
 ```bash
