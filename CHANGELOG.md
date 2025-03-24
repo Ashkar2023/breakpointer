@@ -1,6 +1,6 @@
 # Changelog
 
-## v0.3.1 - 24-03-2025
+## v0.4.0 - 24-03-2025
 
 ### Added
 - `mode` prop on provider for conditional rendering on prod and dev builds
