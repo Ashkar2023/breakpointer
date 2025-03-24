@@ -7,7 +7,6 @@ A lightweight React library for real-time breakpoint detection with support for 
 ![License](https://badgen.net/npm/license/breakpointer)
 <br/>
 ![Downloads](https://badgen.net/npm/dt/breakpointer)
-![Last Commit](https://badgen.net/github/last-commit/Ashkar2023/breakpointer)
 
 
 ## Breakpointer in action:
@@ -39,14 +38,10 @@ import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
 import { BreakpointerProvider } from 'breakpointer';
-import resolveConfig from "tailwindcss/resolveConfig";
-import tailwindConfig from "../tailwind.config";
-
-const config = resolveConfig(tailwindConfig);
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
-        <BreakpointerProvider breakpointsObj={config.theme.screens}>
+        <BreakpointerProvider>
             <App />
         </BreakpointerProvider>
     </StrictMode>,
