@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.5.2 - 26-03-2025
+
+### Fix
+- add z-index to wrapper 
+
 ## v0.5.1 - 26-03-2025
 
 ### Fix

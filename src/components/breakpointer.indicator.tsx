@@ -15,6 +15,7 @@ const Wrapper = styled("div") <{ position: "left" | "right" }>`
     position: fixed;
     bottom: 30px;
     min-height: 60px;
+    z-index: 10000;
     ${({ position }) => position === "right" ? "right: 30px;" : "left: 30px;"}
 `;
 
