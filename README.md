@@ -25,7 +25,6 @@ npm install breakpointer
 |--------|-------------|
 | `BreakpointerProvider` | A context provider to wrap your application |
 | `useBreakpointer` | A hook to access the current breakpoint |
-| `BreakpointerIndicator` | A component that displays the current screen width and an icon based on the breakpoint |
 
 ## Basic Usage
 
@@ -40,7 +39,7 @@ import App from './App';
 import { BreakpointerProvider } from 'breakpointer';
 
 /* 
-    mode !== "development", the BreakpointerIndicator will skip rendering   
+    if mode !== "development", the BreakpointerIndicator will skip rendering   
 */
 const MODE = import.meta.env.MODE; // based on your chosen build tool
 
@@ -79,22 +78,19 @@ const MyComponent = () => {
 
 export default MyComponent;
 ```
-
 ## Default Breakpoints
 
 Breakpointer comes with the following default breakpoints, which align with Tailwind CSS's default breakpoint system:
 
-```tsx
-const breakpoints = {
-    sm: 640,  // large phones & small tablets (640px - 767px)
-    md: 768,  // Tablets (768px - 1023px)
-    lg: 1024, // Laptops & large tablets (1024px - 1279px)
-    xl: 1280, // Desktop & large laptops (1280px - 1535px)
-    "2xl": 1536 // Wide screen & large desktops (1536px and above)
-} as const;
-```
+| Breakpoint | Min Width (px) | Description                          |
+|------------|----------------|--------------------------------------|
+| `sm`       | 640            | Large phones & small tablets        |
+| `md`       | 768            | Tablets                             |
+| `lg`       | 1024           | Laptops & large tablets             |
+| `xl`       | 1280           | Desktop & large laptops             |
+| `2xl`      | 1536           | Wide screen & large desktops        |
 
-## Tailwind Configuration
+## Usage with Tailwind v3
 
 **Note:** `resolveConfig` is only applicable for Tailwind CSS version `3.x.x`.
 
@@ -121,77 +117,39 @@ createRoot(document.getElementById('root')!).render(
 
 ## BreakpointerIndicator
 
-The `BreakpointerIndicator` component displays an icon on the screen along with the current viewport width. This is useful during development for visual feedback.
+The `BreakpointerIndicator` component has been integrated into the `BreakpointerProvider`, so there is no need for manual invocation. You can now customize its appearance by passing a `classNames` object as a prop to the `BreakpointerProvider`.
 
-### Usage
+### `classNames` Object
+
+The `classNames` object allows you to style the internal elements of the `BreakpointerIndicator`. Below is a table describing the available properties:
+
+| Property       | Description                                                                 |
+|----------------|-----------------------------------------------------------------------------|
+| `wrapper`      | Styles the outer wrapper of the indicator.                                 |
+| `iconWrapper`  | Styles the container for the breakpoint icon.                              |
+| `screen`       | Styles the text displaying the current breakpoint (e.g., `sm`, `md`).     |
+| `currentWidth` | Styles the text displaying the current viewport width in pixels.          |
+
+### Example Usage
 
 ```tsx
-import { BreakpointerProvider, BreakpointerIndicator } from 'breakpointer';
+import { BreakpointerProvider } from 'breakpointer';
 
 const App = () => {
     return (
-        <BreakpointerProvider>
-            <YourApp />
-            <BreakpointerIndicator /> {/* This component can be placed anywhere */}
+        <BreakpointerProvider
+            mode="development"
+            classNames={{
+                wrapper: ["bg-gray-300", "text-red-800", "p-4", "rounded-lg"],
+                iconWrapper: ["content-start"],
+                screen: ["font-bold", "text-lg", "text-blue-500"],
+                currentWidth: ["text-sm", "text-gray-400"],
+            }}
+        >
+            <App />
         </BreakpointerProvider>
     );
 };
 ```
 
-This component will show an icon representing the current breakpoint and display the viewport width in pixels.
-
-# Contributing
-
-We welcome contributions to Breakpointer! Here are some guidelines to help you get started:
-
-### Code of Conduct
-
-Please be respectful and considerate of others when contributing to this project. We aim to foster an inclusive and welcoming community.
-
-### How to Contribute
-
-1. **Fork the repository** on GitHub
-2. **Clone your fork** locally
-3. **Create a new branch** for your feature or bugfix
-4. **Make your changes** and commit them with clear, descriptive messages
-5. **Push your branch** to your fork
-6. **Submit a pull request** to the main repository
-
-### Development Setup
-
-```bash
-# Clone the repository
-git clone https://github.com/Ashkar2023/breakpointer.git
-cd breakpointer
-
-# Install dependencies
-npm install
-
-# start tsup in watch mode
-npm run dev
-```
-
-### Pull Request Guidelines
-
-- Include a clear description of the changes
-- Make sure your code follows the existing style
-- Add or update tests as necessary
-- Update documentation for any new features
-- All tests must pass before the PR can be merged
-
-### Coding Standards
-
-- Use 4 spaces for indentation
-- Follow TypeScript best practices
-- Maintain compatibility with React 18+
-- Keep bundle size minimal
-
-### Reporting Issues
-
-If you find a bug or have a feature request, please create an issue on the GitHub repository with:
-
-- A clear title and description
-- Steps to reproduce the issue
-- Expected and actual behavior
-- Screenshots if applicable
-- Any relevant code snippets
+This configuration will style the `BreakpointerIndicator` according to the provided class names.

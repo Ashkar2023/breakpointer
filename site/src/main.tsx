@@ -24,7 +24,6 @@ createRoot(document.getElementById('root')!).render(
                 currentWidth: ["text-sm", "text-gray-400"],
             }}
         >
-            <p className="text-red-500">sdfsdf</p>
             <App />
         </BreakpointerProvider>
     </StrictMode>,

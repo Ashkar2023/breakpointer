@@ -1,5 +1,5 @@
 
-export const breakpoints = {
+export const breakpointsConstants = {
     sm: 640, // large phones & small tablets
     md: 768, // Tablets
     lg: 1024, // Laptops & large tablets

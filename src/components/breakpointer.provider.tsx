@@ -1,12 +1,14 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { debounce } from "../core/utils";
 import BreakpointerContext from "../contexts/breakPoint.context";
-import { breakpoints as breakpointsConstants } from "../core/constants/breakpoints";
+import { breakpointsConstants } from "../core/constants/breakpoints";
 import { parseUnit } from "../core/unit.parser";
+import { BreakpointerIndicator, BreakpointerIndicatorProps } from "./breakpointer.indicator";
 
 type BreakpointProviderProps = {
     children: React.ReactNode,
-    breakpointsObj?: Record<string, string>,
+    breakpointsObj?: Record<string, string | number>,
+    classNames?: BreakpointerIndicatorProps["classNames"],
     mode: string
 };
 
@@ -14,7 +16,8 @@ type BreakpointProviderProps = {
 export const BreakpointerProvider = ({
     children,
     breakpointsObj = {},
-    mode
+    mode,
+    classNames,
 }: BreakpointProviderProps) => {
     const breakpoints = {
         ...breakpointsConstants,
@@ -36,7 +39,7 @@ export const BreakpointerProvider = ({
 
         for (let key in breakpoints) {
             const typedKey = key as keyof typeof breakpoints;
-            
+
             if (breakpoints[typedKey] <= width && breakpoints[typedKey] > curr) {
                 curr = breakpoints[typedKey];
                 screen = typedKey;
@@ -55,7 +58,6 @@ export const BreakpointerProvider = ({
     useEffect(() => {
         window.addEventListener("resize", debouncedResizeHandler);
 
-        // Initial screen detection
         setCurrentScreen(detectScreen(window.innerWidth));
 
         return () => {
@@ -67,8 +69,12 @@ export const BreakpointerProvider = ({
         <BreakpointerContext.Provider value={{
             currentWidth: innerWidth,
             currentScreen: currentScreen,
-            mode: mode
         }}>
+            {
+                mode === "development" ?
+                    <BreakpointerIndicator classNames={classNames} /> :
+                    null
+            }
             {children}
         </BreakpointerContext.Provider>
     );

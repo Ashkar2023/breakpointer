@@ -1,6 +1,6 @@
 {
     "name": "breakpointer",
-    "version": "0.4.0",
+    "version": "0.5.0",
     "description": "a lightweight React library for real-time breakpoint detection. supports custom and default tailwind breakpoints.",
     "main": "dist/index.cjs",
     "module": "dist/index.js",
@@ -35,7 +35,6 @@
     "homepage": "https://github.com/Ashkar2023/breakpointer#readme",
     "devDependencies": {
         "@types/react": "^18.3.19",
-        "clsx": "^2.1.1",
         "goober": "^2.1.16",
         "lucide-react": "^0.483.0",
         "react": "^18.3.1",

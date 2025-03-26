@@ -1,5 +1,20 @@
 # Changelog
 
+## v0.5.1 - 26-03-2025
+
+### Fix
+- removed BreakpointerIndicator export
+
+## v0.5.0 - 25-03-2025
+
+### Feat
+- classNames for internal `<BreakpointIndicator/>` elements
+- Integrated `<BreakpointIndicator/>` directly into provider, removing the  need for manual invokation
+- updated parser to accomodate string(ex: "200px") and numerical values
+
+### Changes
+- removed internal `_render` property returned from useBreakpointer
+
 ## v0.4.0 - 24-03-2025
 
 ### Added

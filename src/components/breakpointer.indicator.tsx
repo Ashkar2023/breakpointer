@@ -2,7 +2,7 @@ import { FC, HTMLAttributes, useMemo, useState } from "react";
 import { useBreakpointer } from "../hooks/useBreakpointer";
 import { styled } from "goober";
 import { Laptop, LucideIcon, Monitor, Smartphone, Tablet, TabletSmartphone, Tv } from "lucide-react";
-import { breakpoints } from "../core/constants/breakpoints";
+import { breakpointsConstants } from "../core/constants/breakpoints";
 
 
 const Wrapper = styled("div") <{ position: "left" | "right" }>`
@@ -15,7 +15,6 @@ const Wrapper = styled("div") <{ position: "left" | "right" }>`
     position: fixed;
     bottom: 30px;
     min-height: 60px;
-    transition: left 1s ease-in-out, right 1s ease-in-out;
     ${({ position }) => position === "right" ? "right: 30px;" : "left: 30px;"}
 `;
 
@@ -24,7 +23,7 @@ const Col1 = styled("div")`
     justify-items: center;
     padding-inline: 3px;
     &:nth-child(odd){
-        align-content: end;
+        align-content: center;
         border-right: 1px solid gray;
     }
 
@@ -39,7 +38,7 @@ const Col2 = styled("div")`
 
 
 const breakpointIcons: {
-    [key in keyof typeof breakpoints | string]: LucideIcon
+    [key in keyof typeof breakpointsConstants | string]: LucideIcon
 } = {
     "sm": TabletSmartphone,
     "md": Tablet,
@@ -48,17 +47,19 @@ const breakpointIcons: {
     "2xl": Tv,
 }
 
-interface BreakpointerIndicatorProps extends HTMLAttributes<HTMLDivElement> { };
+type InternalElements = "wrapper" | "iconWrapper" | "screen" | "currentWidth";
+
+export interface BreakpointerIndicatorProps extends HTMLAttributes<HTMLDivElement> {
+    classNames?: Partial<Record<InternalElements, string[]>>
+};
 
 export const BreakpointerIndicator: FC<BreakpointerIndicatorProps> = ({ className, ...props }) => {
-    const { currentWidth, screen, _render } = useBreakpointer();
-    
-    if(!_render) return null;
+    const { currentWidth, screen } = useBreakpointer();
 
     const [right, setRight] = useState(false);
 
     const Icon: LucideIcon = useMemo(() => {
-        if (screen in breakpoints) {
+        if (screen in breakpointsConstants) {
             return breakpointIcons[screen]
         } else {
             return Smartphone;
@@ -71,11 +72,12 @@ export const BreakpointerIndicator: FC<BreakpointerIndicatorProps> = ({ classNam
             onMouseEnter={() => {
                 setRight(prev => !prev)
             }}
+            className={[className, props.classNames?.wrapper?.join(" ")].join(" ")}
         >
-            <Col1>
+            <Col1 className={props.classNames?.iconWrapper?.join(" ")}>
                 <Icon size={20} />
             </Col1>
-            <Col1>
+            <Col1 className={props.classNames?.screen?.join(" ")}>
                 <b
                     style={{
                         textOverflow: "ellipsis",
@@ -84,7 +86,7 @@ export const BreakpointerIndicator: FC<BreakpointerIndicatorProps> = ({ classNam
                     }}
                 >{screen}</b>
             </Col1>
-            <Col2>
+            <Col2 className={props.classNames?.currentWidth?.join(" ")}>
                 <p style={{ margin: 0 }}>{currentWidth}<small>px</small></p>
             </Col2>
 
