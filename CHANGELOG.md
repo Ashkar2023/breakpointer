@@ -3,7 +3,7 @@
 ## v0.5.1 - 26-03-2025
 
 ### Fix
-- removed BreakpointerIndicator export
+- removed `<BreakpointerIndicator/>` export
 
 ## v0.5.0 - 25-03-2025
 
