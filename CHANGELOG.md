@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.5.3 - 26-03-2025
+
+### Fix
+- add default color(white) to `<BreakpointerIndicator/>` 
+
 ## v0.5.2 - 26-03-2025
 
 ### Fix

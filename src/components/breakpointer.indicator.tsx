@@ -12,6 +12,7 @@ const Wrapper = styled("div") <{ position: "left" | "right" }>`
     background-color: rgb(15, 15, 15);
     border-radius: 5%;
     min-width: 60px;
+    color: white;
     position: fixed;
     bottom: 30px;
     min-height: 60px;
